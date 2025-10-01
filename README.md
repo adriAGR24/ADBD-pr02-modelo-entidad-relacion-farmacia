@@ -9,6 +9,7 @@
   - **Medicamento Fabricado:** producto farmacéutico fabricado por la propia farmacia.
   - **Medicamento Comprado:** producto farmacéutico comprado a terceros (laboratorios).
 - **Familia de Medicamentos:** familia que agrupa medicamentos con características comunes.
+- **Tipo Enfermedad:** representa una categoría o clasificación de enfermedades dentro del sistema de la farmacia.
 - **Laboratorio:** empresa fabricante de medicamentos.
 - **Cliente:** persona que realiza compras en la farmacia.
   - **Cliente Común:** cliente que no tiene trato especial en cuanto a pagos (cuando compra un medicamento, lo paga al instante).
@@ -55,8 +56,14 @@
   - **Dominio:** cadena de texto de longitud variable.
   - **Ejemplos:** `Analgésicos`, `Antibióticos`.
 
-- **Tipo Enfermedades Aplicables:** tipo de enfermedades a las que dicha familia de medicamentos se aplica.
-  - **Dominio:** cadena de texto de longitud variable, pudiendo ser multivaluado.
+### Tipo Enfermedad
+
+- **Código Tipo Enfermedad:** identificador único para cada tipo de enfermedad.
+  - **Dominio:** cadena alfanumérica de longitud fija o variable, sin repeticiones.
+  - **Ejemplos:** `TE001`, `TE002`.
+
+- **Nombre Tipo Enfermedad:** nombre descriptivo de la categoría de enfermedad.
+  - **Dominio:** cadena de texto de longitud variable.
   - **Ejemplos:** `Infecciones bacterianas`, `Hipertensión`.
 
 ### Laboratorio
@@ -91,6 +98,8 @@
   - **Dominio:** cadena alfanumérica de formato nacional.
   - **Ejemplos:** `12345678A`, `73191185F`.
 
+### Cliente con Crédito
+
 - **Nombre:** nombre de pila del cliente.
   - **Dominio:** cadena de texto de longitud variable.
   - **Ejemplos:** `Ana`, `Pablo`.
@@ -98,8 +107,6 @@
 - **Apellidos:** apellidos del cliente.
   - **Dominio:** cadena de texto de longitud variable.
   - **Ejemplos:** `García Pérez`, `Torres Fuentes`.
-
-### Cliente con Crédito
 
 - **Datos Bancarios:**
   - **IBAN:** código internacional de la cuenta bancaria del cliente.
@@ -159,3 +166,7 @@ La relación **Pertenece a** relaciona un medicamento con la familia de medicame
 ### Medicamento - Cliente
 
 La relación **Compra** relaciona un cliente con el medicamento que adquiere mediante una compra. Un cliente puede comprar varios medicamentos (mínimo un medicamento ha de haber adquirido para tener el registro), y un medicamento puede ser comprado por varios clientes (mínimo ha de ser comprado por un cliente para que esta relación tenga sentido). Cardinalidad `N:M`.
+
+### Familia de Medicamentos - Tipo Enfermedad
+
+La relación **Se aplica** relaciona una familia de medicamentos con el tipo de enfermedad sobre la que se aplica. Una familia de medicamentos se puede usar para varios tipos de enfermedad y un tipo de enfermedad puede ser combatida por varias familias de medicamentos. Cardinalidad `N:M`.
